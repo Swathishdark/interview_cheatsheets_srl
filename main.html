@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+  <title>Sample Session</title>
+ <style>
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+}
+::placeholder { /* For modern browsers */
+            text-align: center;
+        }
+
+        :-ms-input-placeholder { /* For Internet Explorer 10-11 */
+            text-align: center;
+        }
+
+        ::-ms-input-placeholder { /* For Microsoft Edge */
+            text-align: center;
+        }
+
+
+body {
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #004642;
+}
+.tab__content-box {
+  font-family:"Rubik"
+  flex-basis: calc(50% - 16px);
+  background: linear-gradient(to right, #ffffff, #2df8c5); 
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 0px;
+  margin-left: 15px;
+  height:140px;
+  justify-content: center;
+  display: inline-block; /* Show as inline block to place side by side */
+  width: calc(40%); /* Width adjusted to fit two boxes per row */
+  vertical-align: top; /* Align the boxes to the top */
+  
+}
+
+/* Ensuring the first tab is active by default */
+.tab_list .tab_item:first-child {
+  color: none
+}
+.tab_list .tab_item:first-child:before {
+  visibility: visible;
+}
+
+   .content-item-fsd {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust the gap between elements as needed */
+  margin-bottom: 7px; /* Space between content items */
+  
+}
+   
+   
+.container {
+  width: 700px;
+  margin: 0 auto;
+  max-width: 100%;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+
+section {
+  background: #004246;
+  padding: 10px 0;
+}
+
+.tab__list {
+  display: flex;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+.tab__item {
+  overflow: hidden;
+  cursor: pointer;
+  padding: 8px 8px;
+  margin-right: 24px;
+  text-shadow: 0 0 0.5px currentColor;
+  letter-spacing: 1px;
+  transition: 0.2s;
+  font-size: 18px;
+  position: relative;
+  color: #2df8c5;
+}
+
+   .tab__item:hover{
+     color:white;
+   }
+   
+.tab__item:before {
+  content: "";
+  position: absolute;
+  top: 95%;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: #2df8c5;
+  transition: 0.2s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.tab__item.is--active {
+  color: #ffffff;
+  position: relative;
+}
+
+.tab__item.is--active:before {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tab__content {
+  padding: 0px;
+  margin-left:0px;
+  background: none;
+  border-radius: 10px 10px 10px;
+  display: flex;
+  flex-wrap: wrap; /* If you want to keep items from stretching across the full width on larger screens */
+  gap: 13px; /* Adds space between boxes */
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab__content-item {
+  flex-basis: calc(100%); /* Adjust width to fit two items per row */
+  display: none; /* Instead of 'none' */
+  
+  background: none;
+  padding: 6px;
+  justify-content: center;
+  border-radius: 8px;
+  margin-top:5px;
+  margin-left: 0px; /* Adds space below each item */
+}
+
+.tab__content-item.is--active {
+  display: block;
+}
+
+.tab__content-title {
+  padding: 24px 24px 24px 0;
+}
+
+.tab .tab .tab__item {
+  font-size: 16px;
+}
+
+.tab .tab .tab__content {
+  padding: 0;
+}
+
+button {
+  font-family:"Rubik";
+  margin-left: 10px;
+  margin-right:07px;
+  padding: 8px 30px; /* optional: for better appearance */
+  cursor: pointer; /* to show a hand pointer on hover */
+  /* remove default border */
+  background-color: #004642; /* optional: give a color */
+  color: white; /* white text */
+  transition: background-color 0.3s;
+  border:none;
+  border-size:.2px;
+  border-radius: 10px;/* smooth color transition on hover */
+}
+
+button:hover {
+  background-color: #2df8c5;
+  color:#000;
+  border-size:none;
+}
+
+/* Adding styles for the WhatsApp button */
+button.whatsapp {
+  background: url("path_to_whatsapp_logo.png") no-repeat center center; /* replace 'path_to_whatsapp_logo.png' with the path to your WhatsApp logo image */
+  background-color: #25d366;
+  background-size: 50px; /* adjust based on your icon size */
+  width: 43px; /* width of the button */
+  height: 43px; /* height of the button */
+}
+.input-panel {
+  display: flex;
+  justify-content: center; /* centering the input boxes */
+  margin-bottom: 20px;
+  margin-left:-40px;
+text-align: center;
+}
+
+.input-panel input {
+  margin: 0 10px; /* gives space between the inputs */
+  padding: 8px; /* optional: for better appearance */
+  border: 1px solid #ccc;
+  border-radius:10px;
+  transition: border 0.3s; /* smooth transition for border changes */
+  height: 40px; /* This sets the height of the input box */
+  line-height: 40px; /* This sets the line height to be the same as the box height, centering the text vertically */
+  padding: 0 10px;
+  
+text-align: center;
+}
+
+
+.input-panel input.error {
+  border-color: red; /* red border for error */
+  animation: bounce 0.5s; /* bounce animation */
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+   /* Tag styles */
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family:"Rubik";
+  font-weight: normal;
+  color: white;
+  position: absolute;
+  top: 10px; /* Adjust as necessary */
+  left: 348px; /* Adjust as necessary */
+  z-index: 10;
+}
+
+.tag-beginner {
+  background-color: #4CAF50; /* Green background for beginners */
+}
+
+.tag-intermediate {
+  background-color: #FF9800; /* Orange background for intermediate */
+}
+
+/* Adjust the .tab__content-box positioning */
+.tab__content-box {
+  width:90%;
+  position: relative; /* Added to position the tags absolutely relative to the box */
+  /* ... rest of the styles */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 100000; /* Set a higher z-index value */
+    background-color: #fefefe;
+}
+
+   .whatsapp-button{
+     cursor:pointer;
+   }
+   
+.close {
+    position: absolute;
+    top: -10px;
+    right: 2px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 100000; /* Set an even higher z-index value */
+}
+       .whatsapp-btn img {
+      cursor:pointer;
+      height: 34px;
+      width: 34px;
+      margin-bottom:-9.5px;
+    }
+   
+          .whatsapp-btn img:hover {
+      transform: scale(1.07); /* Increase the size of the image on hover */
+  transition: transform 0.3s ease; /* Add a smooth transition */
+
+    }
+   .walkthrough {
+    text-decoration: none; /* Removes underline */
+    color: #000; /* Set the text color */
+    transition: color 0.3s ease; /* Smooth transition for the color */
+     margin-left:50px;
+  }
+
+  .walkthrough:hover {
+    color: #555; /* Color when hovered */
+    cursor: pointer; /* Change cursor on hover */
+  }
+
+  /* Optional: Add a little animation to the underline on hover */
+  .walkthrough::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #555;
+    transition: width 0.3s;
+  }
+
+  .walkthrough:hover::after {
+    width: 100%; /* Full width on hover */
+  }
+    </style>
+</head>
+<body>
+<section class="section">
+    <div class="input-panel">
+        <input type="text" id="learnerName" placeholder="Enter learner's name">
+        <input type="text" pattern="\d{10}" id="learnerNumber" placeholder="Enter learner's number" oninput="validateNumberInput(event)">
+    </div>
+    <div class="container">
+        <div class="tab">
+            <div class="tab__list">
+                <div class="tab__item">Swiggy</div>
+                <div class="tab__item">Adobe</div>
+              <div class="tab__item">ChatGPT</div>
+            </div>
+          
+            <div class="tab__content">
+                <!-- Swiggy Content -->
+                <div class="tab__content-item is--active" id="content-dsa">
+                    <div class="tab__content-box">
+                        <h4>Swiggy Cheatsheet</h4>
+                        <p>Cheat Sheet to Swiggy: The Insider’s Guide</p><br>
+                        <button onclick="openPDF('https://drive.google.com/file/d/1gAWbJFC8R2X77r-4NpM3pDU6z7qCW7ds/preview')">View PDF</button>
+                        <whatsapp-btn onclick="shareOnWhatsApp('https://drive.google.com/file/d/1gAWbJFC8R2X77r-4NpM3pDU6z7qCW7ds/preview', 'Do you know what interview rounds Swiggy has? \nAre you aware of how to clear these rounds easily? \nHere’s a cheat sheet, an insider guide for you to help.')" class="whatsapp-btn" id="WhatsApp:Swiggy-Cheatsheet"><img  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></whatsapp-btn>
+                    </div>
+                </div>
+                <!-- Adobe Content -->
+                <div class="tab__content-item" id="content-fullstack">
+                    <div class="tab__content-box">
+                        <h4>Adobe Cheatsheet</h4>
+                        <p>Cheat Sheet to Adobe: The Insider's Guide<br></br></p>
+                        <button onclick="openPDF('https://drive.google.com/file/d/1ztsGYEjgg4-FiMbJmOU4O5WSotQpmzTi/preview')">View PDF</button>
+                        <whatsapp-btn onclick="shareOnWhatsApp('https://drive.google.com/file/d/1ztsGYEjgg4-FiMbJmOU4O5WSotQpmzTi/preview', 'Do you know what interview rounds Adobe has? \nAre you aware of how to clear these rounds easily? \nHere’s a cheat sheet, an insider guide for you to help.')" class="whatsapp-btn" id="WhatsApp:Adobe_Cheatsheet"><img  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></whatsapp-btn>
+                    </div>
+                </div>
+      <div class="tab__content-item" id="content-fullstack">
+                    <div class="tab__content-box">
+                        <h4>ChatGPT Cheatsheet</h4>
+                        <p>ChatGPT Prompts: Cheatsheet for Developers<br></br></p>
+                        <button onclick="openPDF('https://drive.google.com/file/d/1biJIGRJ2EF9jyelMpusMlm7iPjRZE5da/view')">View PDF</button>
+                        <whatsapp-btn onclick="shareOnWhatsApp('https://drive.google.com/file/d/1biJIGRJ2EF9jyelMpusMlm7iPjRZE5da/view', 'Do you know how ChatGPT can help you code more easily? \nAre you familiar with how to give prompts to ChatGPT? \nHere’s a cheat sheet to assist you.')" class="whatsapp-btn" id="WhatsApp:ChatGPT_Cheatsheet"><img  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></whatsapp-btn>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+        // Function to open a modal
+        function openModal(modalID) {
+            const allModals = document.querySelectorAll('.modal');
+            allModals.forEach(modal => modal.style.display = 'none');
+            const modal = document.getElementById(modalID);
+            if (modal) {
+                modal.style.display = 'block';
+            }
+        }
+
+  // Function to close a modal
+ function closeModal(modalID) {
+            const modal = document.getElementById(modalID);
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+  // Function to send data to Google Apps Script for click tracking
+  function sendClickDataToGAS(buttonId, learnerName, learnerNumber) {
+    var gasUrl = 'https://script.google.com/macros/s/AKfycbwlHbHTJ7u1Aziiu4ApdBZDjHRyA6ngcPrU0Tv0MqGA3ZljgYDvR4IrQGuKFAvmu_Ko/exec'; // Replace with your actual web app URL
+    var queryString = `?programName=${encodeURIComponent(buttonId)}&learnerName=${encodeURIComponent(learnerName)}&learnerNumber=${encodeURIComponent(learnerNumber)}`;
+    fetch(gasUrl + queryString)
+        .then(response => response.text())
+        .then(result => console.log('GAS response:', result))
+        .catch(error => console.error('Error:', error));
+}
+
+// Adding click event listeners to WhatsApp buttons for tracking
+document.querySelectorAll('.whatsapp-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        var learnerName = document.getElementById('learnerName').value;
+        var learnerNumber = document.getElementById('learnerNumber').value;
+        sendClickDataToGAS(this.id, learnerName, learnerNumber); // The button's ID represents the programName
+    });
+});
+
+  // Tab functionality
+  const tabs = document.querySelectorAll(".tab__item");
+  const tabContents = document.querySelectorAll(".tab__content-item");
+
+  function activateTab(tabIndex) {
+    tabs.forEach((tab, index) => {
+      tab.classList.toggle("is--active", index === tabIndex);
+      tabContents[index].classList.toggle("is--active", index === tabIndex);
+    });
+  }
+
+  // Initially open the DSA tab and its modal
+  activateTab(0);
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => activateTab(index));
+  });
+
+  // Modal open buttons
+  document.querySelectorAll('.openModal').forEach(button => {
+    button.addEventListener('click', function() {
+      openModal(this.dataset.modal);
+    });
+  });
+
+  // Modal close buttons
+  document.querySelectorAll('.modal .close').forEach(button => {
+    button.addEventListener('click', function() {
+      closeModal(this.dataset.modal);
+    });
+  });
+
+  // Close modals with the Escape key
+  window.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      document.querySelectorAll('.modal').forEach(modal => modal.style.display = 'none');
+    }
+  });
+
+  // Validate phone number input
+  function validateNumberInput(event) {
+    const value = event.target.value.replace(/[^\d]/g, '').slice(0, 10);
+    event.target.value = value;
+  }
+  document.getElementById('learnerNumber').addEventListener('input', validateNumberInput);
+
+  // Share on WhatsApp function
+  window.shareOnWhatsApp = function(link, customMessage) {
+    let nameField = document.getElementById("learnerName");
+    let numberField = document.getElementById("learnerNumber");
+    let name = nameField.value.trim();
+    let number = numberField.value.trim();
+
+    // Validate inputs
+    if (!name || !number || number.length !== 10 || isNaN(number)) {
+      if (!name) nameField.classList.add('error');
+      if (!number || number.length !== 10 || isNaN(number)) numberField.classList.add('error');
+      return; // Stop the function if validation fails
+    }
+
+    // Remove error class if input is valid
+    nameField.classList.remove('error');
+    numberField.classList.remove('error');
+
+    let message = `Hey ${name}, \n${customMessage} \nHere is the link: ${link}`;
+    let whatsappUrl = `https://web.whatsapp.com/send?phone=${number}&text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+};
+  
+  // Function to open videos in a new tab
+ window.openPDF = function(link) {
+            window.open(link, "_blank");
+        };
+});
+
+</script>
+</body>
+</html>
